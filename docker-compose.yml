@@ -1,0 +1,26 @@
+version: '3.1'
+services:
+  postgres_db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: 12qwaszx
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+
+  gateway_service:
+    image: gateway-service
+    ports:
+      - "9092:9092"
+    depends_on:
+      - postgres_db
+    environment:
+      - DB_HOST=postgres_db
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=12qwaszx
+      - DB_NAME=postgres
+      - APP_PORT=9092

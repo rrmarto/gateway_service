@@ -1,0 +1,28 @@
+server:
+  port: ${APP_PORT:9092}
+  error:
+    include-message: always
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:postgres}
+    username: ${DB_USER:postgres}
+    password: ${DB_PASSWORD:12qwaszx}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+swagger:
+  service:
+    title: "Gateway Services"
+    description: "Gateway Services"
+    version: "v1"
+    termsOfServiceUrl: ""
+    contact:
+      name: "Roberto Marto"
+      website: ""
+      email: "rrmarto89@gmail.com"
